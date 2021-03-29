@@ -1,5 +1,6 @@
 package collegematch;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,20 +17,20 @@ public class Menu {
 		this.collegeManager = new CollegeManager();
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		Menu collegeMatchMenu = new Menu();
 		collegeMatchMenu.runMainMenu(collegeMatchMenu);
 	}
 
-	public void runMainMenu (Menu collegeMatchMenu) {
+	public void runMainMenu (Menu collegeMatchMenu) throws IOException {
 		this.displayLoginMenu();	
 		keyboardIn.close();
 	}
 	
 			
 
-	private void displayLoginMenu() {
+	private void displayLoginMenu() throws IOException {
 		System.out.println("Welcome to CollegeMatch!");
 		System.out.println("Enter username: ");
 		String userName = keyboardIn.nextLine();
@@ -46,7 +47,7 @@ public class Menu {
 		}	
 	}
 	
-	public void displayRegisterMenu() {
+	public void displayRegisterMenu() throws IOException {
 		System.out.println("Enter a username: ");
 		String userName = keyboardIn.nextLine();
 		while (userManager.checkForDuplicateUsername(userName)) {

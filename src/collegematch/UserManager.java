@@ -1,5 +1,9 @@
 package collegematch;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import java.util.Scanner;
@@ -10,7 +14,11 @@ public class UserManager {
 	private Scanner keyboardIn;
 	
 	public UserManager() {
-		this.users = new ArrayList<User>();
+		try {
+			this.users = this.readUsers(this.keyboardIn);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public User logIn(String userName) {
@@ -21,10 +29,33 @@ public class UserManager {
 		}
 		return null;
 	}
-	
-	public void register(String userName, int satScore, double gpa, String campusPreference) {
+
+	public ArrayList<User> readUsers(Scanner keyboardIn) throws FileNotFoundException{
+		ArrayList<User> allUsers = new ArrayList<User>();
+		keyboardIn = new Scanner(new File("./src/collegematch/userInfo.csv"));
+		keyboardIn.useDelimiter("/n");
+		while (keyboardIn.hasNextLine())
+		{
+			String[] userDataInArray = keyboardIn.nextLine().split(",");
+			allUsers.add(new User(userDataInArray[0],  Integer.parseInt(userDataInArray[1]), Double.parseDouble(userDataInArray[2]), userDataInArray[3]));
+		}
+		keyboardIn.close();
+		return allUsers;
+	}
+	public void register(String userName, int satScore, double gpa, String campusPreference) throws IOException {
 		User user = new User(userName, satScore, gpa, campusPreference);
 		users.add(user);
+		FileWriter writer = new FileWriter("./src/collegematch/userInfo.csv", true);
+		writer.append("\n");
+		writer.append(userName);
+		writer.append(",");
+		writer.append(String.valueOf(satScore));
+		writer.append(",");
+		writer.append(String.valueOf(gpa));
+		writer.append(",");
+		writer.append(campusPreference);
+		writer.append("\n");
+		writer.close();
 	}
 	
 	public boolean validateCampusPreference(String campusPreference) {
