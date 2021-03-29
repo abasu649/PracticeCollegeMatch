@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class CollegeManager {
 	private ArrayList<College> colleges;
 	
+	//hard code college into a arraylist
 	public CollegeManager() {
 		this.colleges = new ArrayList<College>();
 		College washU = new College("Washington University", 1470, 3.5, "urban");
@@ -21,6 +22,7 @@ public class CollegeManager {
 		colleges.add(iowaState);
 	}
 	
+	//find colleges by college names
 	public void searchCollege(String collegeName) {
 		boolean collegeNotFound = true;
 		for (College college : colleges) {
@@ -34,6 +36,7 @@ public class CollegeManager {
 		}
 	}
 	
+	//return the arraylist of colleges
 	public ArrayList<College> getColleges(){
 		return colleges;
 	}

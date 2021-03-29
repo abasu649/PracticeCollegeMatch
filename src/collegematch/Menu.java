@@ -29,7 +29,7 @@ public class Menu {
 	}
 	
 			
-
+	// login interface
 	private void displayLoginMenu() throws IOException {
 		System.out.println("Welcome to CollegeMatch!");
 		System.out.println("Enter username: ");
@@ -47,6 +47,7 @@ public class Menu {
 		}	
 	}
 	
+	//register interface
 	public void displayRegisterMenu() throws IOException {
 		System.out.println("Enter a username: ");
 		String userName = keyboardIn.nextLine();
@@ -78,7 +79,7 @@ public class Menu {
 		userManager.register(userName, satScore, gpa, campusPreference);
 		System.out.println("Registration successful. Transferring you to Login menu");
 	}
-
+	//shows option for user
 	public void displayStudentMenu() {
 		System.out.println("Please select an option: ");
 		System.out.println("1. Display saved colleges");
@@ -86,6 +87,10 @@ public class Menu {
 		System.out.println("3. Search college database");
 	}
 	
+	//Processes the user selected option
+	//1. Displays saved colleges
+	//2. Gets college matches
+	//3. Searches college database
 	public void processStudentMenu(int studentOption) {
 		if(studentOption == 1) {
 			userManager.displayUserSavedCollegeList(currentUser);

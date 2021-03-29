@@ -20,6 +20,7 @@ public class UserManager {
 		}
 	}
 	
+	// checks if entered user name exists in database and returns the object, else returns null
 	public User logIn(String userName) {
 		for (User user: users) {
 			if (user.getUsername().equals(userName)) {
@@ -28,7 +29,8 @@ public class UserManager {
 		}
 		return null;
 	}
-
+	
+	// reads userinfo from the databse(csv file) file and create & adds user object to arraylist
 	public ArrayList<User> readUsers() throws FileNotFoundException{
 		ArrayList<User> allUsers = new ArrayList<User>();
 		Scanner keyboardIn = new Scanner(new File("./src/collegematch/userInfo.csv"));
@@ -41,6 +43,8 @@ public class UserManager {
 		keyboardIn.close();
 		return allUsers;
 	}
+	
+	// registers new user by creating a new user object, adding it to array list and database.
 	public void register(String userName, int satScore, double gpa, String campusPreference) throws IOException {
 		User user = new User(userName, satScore, gpa, campusPreference);
 		users.add(user);
