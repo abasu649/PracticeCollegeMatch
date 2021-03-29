@@ -72,7 +72,6 @@ public class Menu {
 		System.out.println("Enter your whether you prefer \"rural\" or \"urban\" campuses: ");
 		String campusPreference = keyboardIn.nextLine();
 		while (!userManager.validateCampusPreference(campusPreference)) {
-//			System.out.print("Response must be \"rural\" or \"urban\"");
 			System.out.println("Responses must be \"rural\" or \"urban\". Please try again: ");
 			campusPreference = keyboardIn.nextLine();
 		}
