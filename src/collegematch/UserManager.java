@@ -61,5 +61,8 @@ public class UserManager {
 		user.displaySavedColleges();
 	}
 
-	
+	public ArrayList<College> getCollegeMatches(User user, ArrayList<College> colleges) {
+		ArrayList<College> matches = user.getCollegeMatches(colleges);
+		return matches;
+	}
 }

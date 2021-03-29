@@ -43,14 +43,13 @@ public class User {
 		for (College collegeToBeChecked : collegesToBeChecked) {
 			if (satScore >= collegeToBeChecked.getSatScoreMin() 
 					&& gpa >= collegeToBeChecked.getGpaMin() 
-					&& campusPreference == collegeToBeChecked.getCampusType()) {
+					&& campusPreference.equals(collegeToBeChecked.getCampusType())) {
 				matchedColleges.add(collegeToBeChecked);
 			}
 		}
 		return matchedColleges;
 	}
-
-
+	
 	public String getUsername() {
 		return username;
 	}

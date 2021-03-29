@@ -22,13 +22,19 @@ public class CollegeManager {
 	}
 	
 	public void searchCollege(String collegeName) {
+		boolean collegeNotFound = true;
 		for (College college : colleges) {
-			if (college.getName() == collegeName) {
+			if (college.getName().contains(collegeName)) {
 				college.displayCollegeInformation();
+				collegeNotFound = false;
 			}
 		}
-		System.out.println("College not found.");
+		if(collegeNotFound) {
+			System.out.println("College not found.");
+		}
 	}
-
-
+	
+	public ArrayList<College> getColleges(){
+		return colleges;
+	}
 }

@@ -1,5 +1,6 @@
 package collegematch;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
@@ -7,12 +8,14 @@ public class Menu {
 	private Scanner keyboardIn;
 	private UserManager userManager;
 	private User currentUser;
+	private CollegeManager collegeManager;
 	
 	public Menu() {
 		keyboardIn = new Scanner(System.in);
 		this.userManager = new UserManager();
+		this.collegeManager = new CollegeManager();
 	}
-
+	
 	public static void main(String[] args) {
 		
 		Menu collegeMatchMenu = new Menu();
@@ -87,9 +90,21 @@ public class Menu {
 		if(studentOption == 1) {
 			userManager.displayUserSavedCollegeList(currentUser);
 		} else if (studentOption == 2) {
-			System.out.println("Taking quiz");
+			ArrayList<College> colleges = collegeManager.getColleges();
+			ArrayList<College> matches = userManager.getCollegeMatches(currentUser, colleges);
+			if (matches.isEmpty()) {
+				System.out.println("Currently, no colleges can be matched according to your info, please check for updates!");
+			}
+			else {
+				System.out.println("List of your matched college(s) are: ");
+				for (College m : matches) {
+					System.out.println(m.getName());
+				}
+			}
 		} else if (studentOption == 3) { 
-			System.out.println("List of scores");
+			System.out.println("Enter the name of the college to be searched: ");
+			String collegeName = keyboardIn.nextLine();
+			collegeManager.searchCollege(collegeName);
 		}
 	}
 	//deletes new line at the end of string
