@@ -53,6 +53,13 @@ public class User {
 	public String getUsername() {
 		return username;
 	}
-
-
+	public int getSatScore() {
+		return satScore;
+	}
+	public double getGpa() {
+		return gpa;
+	}
+	public String getCampusPreference() {
+		return campusPreference;
+	}
 }

@@ -11,11 +11,10 @@ import java.util.Scanner;
 public class UserManager {
 	
 	private ArrayList<User> users;
-	private Scanner keyboardIn;
 	
 	public UserManager() {
 		try {
-			this.users = this.readUsers(this.keyboardIn);
+			this.users = this.readUsers();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -30,9 +29,9 @@ public class UserManager {
 		return null;
 	}
 
-	public ArrayList<User> readUsers(Scanner keyboardIn) throws FileNotFoundException{
+	public ArrayList<User> readUsers() throws FileNotFoundException{
 		ArrayList<User> allUsers = new ArrayList<User>();
-		keyboardIn = new Scanner(new File("./src/collegematch/userInfo.csv"));
+		Scanner keyboardIn = new Scanner(new File("./src/collegematch/userInfo.csv"));
 		keyboardIn.useDelimiter("/n");
 		while (keyboardIn.hasNextLine())
 		{
@@ -54,7 +53,6 @@ public class UserManager {
 		writer.append(String.valueOf(gpa));
 		writer.append(",");
 		writer.append(campusPreference);
-		writer.append("\n");
 		writer.close();
 	}
 	
