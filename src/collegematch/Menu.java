@@ -92,7 +92,7 @@ public class Menu {
 			System.out.println("List of scores");
 		}
 	}
-	
+	//deletes new line at the end of string 
 	private double getUserGPAInput() {
 		double selected = keyboardIn.nextDouble();
 		String notUsed = keyboardIn.nextLine();
